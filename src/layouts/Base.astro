@@ -1,0 +1,24 @@
+---
+import '../styles/global.css';
+import { withBase, absUrl } from '../lib/url';
+const { title, description, jsonLd } = Astro.props;
+const nav = [['how-it-works/','How it works'],['cv-writing/','CV'],['cover-letters/','Cover letters'],['linkedin-profile/','LinkedIn'],['interview-prep/','Interview prep'],['about/','About'],['faq/','FAQ'],['enquire/','Request a quote']];
+const canonical = absUrl(Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/,''),'').replace(/^\//,''), Astro.site);
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{title}</title><meta name="description" content={description}>
+<link rel="canonical" href={canonical}>
+{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+</head>
+<body>
+<header><strong><a href={withBase('')}>CV and LinkedIn Studio</a></strong>
+<nav>{nav.map(([p,l])=><a href={withBase(p)}>{l}</a>)}</nav></header>
+<main><slot /></main>
+<footer>
+<a href={withBase('privacy/')}>Privacy</a> · <a href={withBase('disclosure/')}>Disclosure</a> · <a href={withBase('about/')}>About</a>
+<p>Career documents written from your real history. No guarantees of interviews or job offers.</p>
+</footer>
+</body></html>

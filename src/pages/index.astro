@@ -1,0 +1,14 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { withBase } from '../lib/url';
+const services = (await getCollection('pages')).filter((p) => p.data.kind === 'service').sort((a, b) => a.data.order - b.data.order);
+---
+<Base title="CV and LinkedIn Studio | Honest career documents" description="CV, cover letter, LinkedIn and interview prep support, tailored to your real experience. Nothing invented, nothing inflated.">
+<h1>Career documents that tell your real story, clearly</h1>
+<p>We help you present the experience you actually have. You supply your history. We sharpen the wording and tailor it to the role. We never invent jobs, titles, dates, metrics or skills.</p>
+<p><a class="btn" href={withBase('enquire/')}>Request a quote</a> <a href={withBase('how-it-works/')}>How it works</a></p>
+<h2>Services</h2>
+<ul class="cards">{services.map((s)=><li><h3><a href={withBase(s.id+'/')}>{s.data.title.split(' | ')[0]}</a></h3><p>{s.data.summary}</p></li>)}</ul>
+<p class="note">All services are quote-based. Request a quote and tell us what you need.</p>
+</Base>

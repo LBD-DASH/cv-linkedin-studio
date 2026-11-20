@@ -1,0 +1,9 @@
+---
+import faq from '../data/faq.json';
+import Base from '../layouts/Base.astro';
+const jsonLd = {'@context':'https://schema.org','@type':'FAQPage',mainEntity:faq.map((f)=>({'@type':'Question',name:f.q,acceptedAnswer:{'@type':'Answer',text:f.a}}))};
+---
+<Base title="FAQ | CV and LinkedIn Studio" description="Common questions about how CV and LinkedIn Studio works, what we need from you, and what we will not do." jsonLd={jsonLd}>
+<h1>Frequently asked questions</h1>
+{faq.map((f)=><><h2>{f.q}</h2><p>{f.a}</p></>)}
+</Base>

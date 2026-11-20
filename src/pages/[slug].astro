@@ -1,0 +1,15 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { withBase } from '../lib/url';
+export async function getStaticPaths() {
+  return (await getCollection('pages')).map((p) => ({ params: { slug: p.id }, props: { p } }));
+}
+const { p } = Astro.props;
+const { Content } = await render(p);
+---
+<Base title={p.data.title} description={p.data.description}>
+<h1>{p.data.title.split(' | ')[0]}</h1>
+<Content />
+{p.data.kind === 'service' && <p><a class="btn" href={withBase('enquire/')}>Request a quote</a></p>}
+</Base>
