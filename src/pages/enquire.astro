@@ -2,10 +2,12 @@
 import Base from '../layouts/Base.astro';
 import { withBase } from '../lib/url';
 ---
-<Base title="Request a quote | CV and LinkedIn Studio" description="Enquiries for CV, cover letter, LinkedIn and interview prep support. Enquiries are opening soon; no payment is taken on this site.">
-<h1>Request a quote</h1>
-<p class="note"><strong>Enquiries open soon.</strong> We have not switched on an enquiry form yet, so there is nothing to submit today. Please check back shortly.</p>
+<Base cta={false} title="Request a quote | CV and LinkedIn Studio" description="Enquiries for CV, cover letter, LinkedIn and interview prep support. Enquiries are opening soon; no payment is taken on this site.">
+<section class="page-hero"><div class="wrap"><h1>Request a quote</h1><p class="lead">Every service is quoted individually, based on what you need.</p></div></section>
+<div class="wrap article"><div class="prose">
+<p class="note-box"><strong>Enquiries open soon.</strong> We have not switched on an enquiry form yet, so there is nothing to submit today. Please check back shortly.</p>
 <h2>What to have ready</h2>
-<ul><li>Your current CV, or a list of your roles, dates and responsibilities</li><li>The kind of role you are aiming for</li><li>Which service you want: CV, cover letter, LinkedIn profile or interview prep</li></ul>
-<p>This page only collects enquiries. No payment is taken here. Read <a href={withBase('how-it-works/')}>how it works</a> and the <a href={withBase('privacy/')}>privacy page</a> first.</p>
+<ul class="tick"><li>Your current CV, or a list of your roles, dates and responsibilities</li><li>The kind of role you are aiming for</li><li>Which service you want: CV, cover letter, LinkedIn profile or interview prep</li></ul>
+<p style="margin-top:32px">This page only collects enquiries. No payment is taken here. Read <a href={withBase('how-it-works/')}>how it works</a> and the <a href={withBase('privacy/')}>privacy page</a> first.</p>
+</div></div>
 </Base>

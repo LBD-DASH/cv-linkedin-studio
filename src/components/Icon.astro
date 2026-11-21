@@ -1,0 +1,10 @@
+---
+const { name } = Astro.props;
+const p = {
+cv:'<path d="M7 3h8l4 4v14H7z"/><path d="M15 3v4h4M10 12h6M10 16h6"/>',
+letter:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',
+linkedin:'<circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-4 3-6 7-6s7 2 7 6"/>',
+interview:'<path d="M4 5h16v10H9l-5 4z"/><path d="M8 9h8M8 12h5"/>'
+}[name];
+---
+<span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" set:html={p} /></span>

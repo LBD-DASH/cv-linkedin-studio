@@ -5,14 +5,23 @@ kind: service
 order: 3
 lastUpdated: 2026-11-20
 summary: "Headline, About and experience wording that matches your real history."
+icon: linkedin
+lead: "A LinkedIn headline, About section and experience that tell the same true story as your CV."
+audience:
+  - "People whose profile is thin, out of date or inconsistent with their CV"
+  - "Job seekers who want a clearer headline and About section"
+gets:
+  - "Draft text for your headline, About section and experience entries"
+  - "Wording consistent with your CV"
+process:
+  - t: "Share your history"
+    d: "Send your CV and, if you like, your current profile text."
+  - t: "We draft"
+    d: "We rewrite the sections so they are clear and consistent."
+  - t: "You publish"
+    d: "You review and paste the text in yourself."
+notes:
+  - "We do not add skills, roles or claims you cannot back up."
+  - "We do not log in to your account or post for you."
+  - "You stay in full control of your profile."
 ---
-Your LinkedIn profile should tell the same true story as your CV. We rewrite the headline, About section and experience entries so they are clear and consistent with your CV.
-
-## What you get
-- Draft text for your headline, About section and experience entries
-- Wording consistent with your CV
-
-## What we will not do
-We do not add skills, roles or claims that you cannot back up. We do not log in to your account or post for you. You paste the text in yourself.
-
-Request a quote.

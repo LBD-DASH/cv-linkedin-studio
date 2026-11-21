@@ -5,14 +5,24 @@ kind: service
 order: 2
 lastUpdated: 2026-11-20
 summary: "A cover letter for a specific role, in your voice."
+icon: letter
+lead: "A cover letter that explains why your real experience fits one particular role."
+audience:
+  - "People applying to a specific role who want a focused letter"
+  - "Anyone who struggles to start or to sound natural"
+  - "Applicants who want letters that match their CV"
+gets:
+  - "A letter written for one role, in a tone that sounds like you"
+  - "A review round to correct any detail"
+process:
+  - t: "Send the role"
+    d: "Share the job description and your history."
+  - t: "We draft"
+    d: "We write a letter using only experience you have told us about."
+  - t: "You review"
+    d: "You adjust the tone and details until it is right."
+notes:
+  - "We do not claim experience, results or qualifications you have not given us."
+  - "One letter per role, so it reads as written for that job."
+  - "We make no promise about outcomes."
 ---
-A good cover letter explains why your real experience fits one particular role. We draft it from your history and the job description you send us.
-
-## What you get
-- A letter written for one role, in a natural tone that sounds like you
-- A review round to correct any detail
-
-## What we will not do
-We do not claim experience, results or qualifications you have not given us.
-
-Request a quote for one letter or several.

@@ -1,24 +1,38 @@
 ---
 import '../styles/global.css';
 import { withBase, absUrl } from '../lib/url';
-const { title, description, jsonLd } = Astro.props;
-const nav = [['how-it-works/','How it works'],['cv-writing/','CV'],['cover-letters/','Cover letters'],['linkedin-profile/','LinkedIn'],['interview-prep/','Interview prep'],['about/','About'],['faq/','FAQ'],['enquire/','Request a quote']];
+import CtaBand from '../components/CtaBand.astro';
+const { title, description, jsonLd, cta = true } = Astro.props;
+const nav = [['cv-writing/','CV writing'],['cover-letters/','Cover letters'],['linkedin-profile/','LinkedIn'],['interview-prep/','Interview prep'],['how-it-works/','How it works'],['faq/','FAQ']];
 const canonical = absUrl(Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/,''),'').replace(/^\//,''), Astro.site);
+const cur = Astro.url.pathname;
 ---
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title><meta name="description" content={description}>
+<meta name="theme-color" content="#0f1f33">
 <link rel="canonical" href={canonical}>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f1f33'/%3E%3Ctext x='16' y='22' font-size='16' font-family='Georgia' font-weight='700' fill='%23e9a15a' text-anchor='middle'%3ECV%3C/text%3E%3C/svg%3E">
 {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 </head>
 <body>
-<header><strong><a href={withBase('')}>CV and LinkedIn Studio</a></strong>
-<nav>{nav.map(([p,l])=><a href={withBase(p)}>{l}</a>)}</nav></header>
-<main><slot /></main>
-<footer>
-<a href={withBase('privacy/')}>Privacy</a> · <a href={withBase('disclosure/')}>Disclosure</a> · <a href={withBase('about/')}>About</a>
-<p>Career documents written from your real history. No guarantees of interviews or job offers.</p>
-</footer>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap">
+<a class="brand" href={withBase('')}><i aria-hidden="true">CV</i>CV and LinkedIn Studio</a>
+<nav class="nav" aria-label="Main">{nav.map(([p,l])=><a href={withBase(p)} aria-current={cur===withBase(p)?'page':undefined}>{l}</a>)}</nav>
+<a class="btn btn--accent btn--sm" href={withBase('enquire/')}>Request a quote</a>
+<details class="menu"><summary>Menu</summary><nav aria-label="Mobile">{nav.map(([p,l])=><a href={withBase(p)}>{l}</a>)}<a href={withBase('about/')}>About</a><a href={withBase('enquire/')}>Request a quote</a></nav></details>
+</div></header>
+<main id="main"><slot />{cta && <CtaBand />}</main>
+<footer class="site-footer"><div class="wrap">
+<div class="cols">
+<div><a class="brand" href={withBase('')}><i aria-hidden="true">CV</i>CV and LinkedIn Studio</a><p>Career documents written from your real history. Nothing invented, nothing inflated.</p></div>
+<div><h2>Services</h2><ul>{nav.slice(0,4).map(([p,l])=><li><a href={withBase(p)}>{l}</a></li>)}</ul></div>
+<div><h2>Studio</h2><ul><li><a href={withBase('how-it-works/')}>How it works</a></li><li><a href={withBase('about/')}>About</a></li><li><a href={withBase('faq/')}>FAQ</a></li><li><a href={withBase('enquire/')}>Request a quote</a></li></ul></div>
+<div><h2>Trust</h2><ul><li><a href={withBase('privacy/')}>Privacy</a></li><li><a href={withBase('disclosure/')}>Disclosure</a></li></ul></div>
+</div>
+<p class="legal">AI-assisted drafting, reviewed against what you tell us. We make no promise of interviews or job offers. Services are quote-based; no payment is taken on this site.</p>
+</div></footer>
 </body></html>

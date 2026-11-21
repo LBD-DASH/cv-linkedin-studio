@@ -11,6 +11,12 @@ const pages = defineCollection({
     order: z.number(),
     lastUpdated: z.coerce.date(),
     summary: z.string().optional(),
-  }),
+    icon: z.enum(['cv', 'letter', 'linkedin', 'interview']).optional(),
+    lead: z.string().optional(),
+    audience: z.array(z.string()).default([]),
+    gets: z.array(z.string()).default([]),
+    process: z.array(z.object({ t: z.string(), d: z.string() })).default([]),
+    notes: z.array(z.string()).default([]),
+  }).refine((d) => d.kind !== 'service' || (d.icon && d.lead && d.audience.length && d.gets.length && d.process.length && d.notes.length), 'service pages need icon, lead, audience, gets, process, notes'),
 });
 export const collections = { pages };

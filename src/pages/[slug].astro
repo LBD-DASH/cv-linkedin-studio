@@ -1,15 +1,40 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
 import { withBase } from '../lib/url';
 export async function getStaticPaths() {
   return (await getCollection('pages')).map((p) => ({ params: { slug: p.id }, props: { p } }));
 }
 const { p } = Astro.props;
+const d = p.data;
 const { Content } = await render(p);
+const name = d.title.split(' | ')[0];
 ---
-<Base title={p.data.title} description={p.data.description}>
-<h1>{p.data.title.split(' | ')[0]}</h1>
-<Content />
-{p.data.kind === 'service' && <p><a class="btn" href={withBase('enquire/')}>Request a quote</a></p>}
+{d.kind === 'service' ? (
+<Base title={d.title} description={d.description}>
+<section class="page-hero"><div class="wrap">
+<p class="crumbs"><a href={withBase('')}>Home</a> / Services / {name}</p>
+<Icon name={d.icon} />
+<h1>{name}</h1><p class="lead">{d.lead}</p>
+<div class="actions"><a class="btn" href={withBase('enquire/')}>Request a quote</a><a class="btn btn--ghost" href={withBase('how-it-works/')}>How it works</a></div>
+</div></section>
+<section class="band"><div class="wrap grid g2">
+<div><p class="eyebrow">Who it is for</p><h2>Is this right for you?</h2><ul class="tick">{d.audience.map((a)=><li>{a}</li>)}</ul></div>
+<div><p class="eyebrow">What you get</p><h2>The work, plainly</h2><ul class="tick">{d.gets.map((a)=><li>{a}</li>)}</ul></div>
+</div></section>
+<section class="band band--tint"><div class="wrap">
+<div class="head"><p class="eyebrow">Process</p><h2>How we work on it</h2></div>
+<ol class="steps">{d.process.map((s)=><li><h3>{s.t}</h3><p>{s.d}</p></li>)}</ol>
+</div></section>
+<section class="band"><div class="wrap notes">
+<div class="head"><p class="eyebrow">Honest notes</p><h2>What we will and will not do</h2></div>
+<div class="grid g3">{d.notes.map((n)=><div class="card"><p>{n}</p></div>)}</div>
+</div></section>
 </Base>
+) : (
+<Base title={d.title} description={d.description}>
+<section class="page-hero"><div class="wrap"><p class="crumbs"><a href={withBase('')}>Home</a> / {name}</p><h1>{name}</h1><p class="lead">{d.description}</p></div></section>
+<div class="wrap article"><div class="prose"><Content /></div></div>
+</Base>
+)}
