@@ -5,6 +5,11 @@ kind: service
 order: 2
 lastUpdated: 2026-11-20
 summary: "A cover letter for a specific role, in your voice."
+headline: "Cover *letters* that sound like you."
+example:
+  label: "Example opening"
+  before: "I am a hard worker and would love this job"
+  after: "In my last role I ran the front desk and trained new starters, which is the work this role asks for"
 icon: letter
 lead: "A cover letter that explains why your real experience fits one particular role."
 audience:

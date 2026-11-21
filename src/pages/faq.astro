@@ -5,6 +5,6 @@ import Faq from '../components/Faq.astro';
 const jsonLd = {'@context':'https://schema.org','@type':'FAQPage',mainEntity:faq.map((f)=>({'@type':'Question',name:f.q,acceptedAnswer:{'@type':'Answer',text:f.a}}))};
 ---
 <Base title="FAQ | CV and LinkedIn Studio" description="Common questions about how CV and LinkedIn Studio works, what we need from you, and what we will not do." jsonLd={jsonLd}>
-<section class="page-hero"><div class="wrap"><h1>Frequently asked questions</h1><p class="lead">Straight answers about what we do and what we do not.</p></div></section>
+<section class="page-hero"><div class="wrap"><h1>Frequently asked <em>questions</em></h1><p class="lead">Straight answers about what we do and what we do not.</p></div></section>
 <div class="wrap article"><div class="prose"><Faq items={faq} /></div></div>
 </Base>

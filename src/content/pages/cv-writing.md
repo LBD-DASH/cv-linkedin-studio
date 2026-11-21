@@ -5,6 +5,11 @@ kind: service
 order: 1
 lastUpdated: 2026-11-20
 summary: "A clear, tailored CV built only from your real history."
+headline: "CV *writing*, built on what you did."
+example:
+  label: "Example line"
+  before: "Responsible for reports"
+  after: "Built the weekly sales report used by the regional team"
 icon: cv
 lead: "A CV that makes your real experience easy to read and relevant to the roles you want."
 audience:

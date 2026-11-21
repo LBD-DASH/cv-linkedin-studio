@@ -3,54 +3,67 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import Faq from '../components/Faq.astro';
+import Mark from '../components/Mark.astro';
 import faq from '../data/faq.json';
 import { withBase } from '../lib/url';
 const services = (await getCollection('pages')).filter((p) => p.data.kind === 'service').sort((a, b) => a.data.order - b.data.order);
-const steps = [['You send your real history','A current CV or a plain list of roles, dates and responsibilities, plus the job you want.'],['We tailor and sharpen','We organise it, tighten the wording and focus it on your target role. We ask when something is unclear.'],['You check every line','Anything not accurate is corrected or removed before you use it.']];
+const steps = [['You send your real history','A current CV or a plain list of roles, dates and responsibilities, plus the job you want.'],['We tailor and sharpen','We organise it, tighten the wording and aim it at your target role. We ask when something is unclear.'],['You check every line','Anything not accurate is corrected or removed before you use it.']];
+const rewrites = [['Responsible for reports','Built the weekly sales report used by the regional team'],['Good communication skills','Wrote the monthly update that kept the whole team informed'],['Helped with customers','Resolved customer queries at the front desk and passed complex cases to the right person']];
 const jsonLd = {'@context':'https://schema.org','@type':'FAQPage',mainEntity:faq.slice(0,4).map((f)=>({'@type':'Question',name:f.q,acceptedAnswer:{'@type':'Answer',text:f.a}}))};
 ---
 <Base title="CV and LinkedIn Studio | Honest career documents" description="CV, cover letter, LinkedIn and interview prep support, tailored to your real experience. Nothing invented, nothing inflated." jsonLd={jsonLd}>
 <section class="hero"><div class="wrap">
 <div>
-<p class="eyebrow">CV, cover letter, LinkedIn, interview prep</p>
-<h1 class="display">Tailored CVs, built from your real experience.</h1>
-<p class="lead">You bring the history. We sharpen the wording and aim it at the role. We never invent jobs, titles, dates, metrics or skills.</p>
+<p class="eyebrow l">CV, cover letter, LinkedIn, interview prep</p>
+<h1>Say what is <em>true</em> about you, sharper.</h1>
+<p class="lead">You bring the real history. We edit the wording and aim it at the role. Every change is visible, and we never invent jobs, titles, dates, metrics or skills.</p>
 <div class="actions"><a class="btn" href={withBase('enquire/')}>Request a quote</a><a class="btn btn--ghost" href={withBase('how-it-works/')}>How it works</a></div>
 <small>Quote-based. No payment is taken on this site.</small>
 </div>
-<div class="mock" aria-hidden="true">
-<div class="doc">
-<div class="who"><span class="avatar"></span><span class="ph">Your name<small>Your role</small></span></div>
-<h4>Profile</h4><div class="bar"></div><div class="bar m"></div><div class="bar s"></div>
-<h4>Experience</h4><div class="ph">Your role, Your employer<small>Your dates</small></div><div class="bar"></div><div class="bar m"></div>
-<h4>Skills</h4><span class="chip">Your skill</span><span class="chip">Your skill</span><span class="chip">Your skill</span>
+<div class="stage" aria-hidden="true">
+<div class="sheet">
+<div class="who"><span class="chip" style="width:46px;height:46px;border-radius:50%"></span><span class="nm">Your name<small>Your role</small></span></div>
+<h4>Profile</h4><div class="ln"></div><div class="ln m"></div>
+<h4>Experience</h4>
+<p class="row"><span class="del">Responsible for reports</span><br><span class="ins">Built the weekly sales report used by the regional team</span></p>
+<p class="row muted" style="font-size:.85rem">Your employer, your dates</p>
+<h4>Skills</h4><div class="chips"><span class="chip">Your skill</span><span class="chip">Your skill</span><span class="chip">Your skill</span></div>
 </div>
-<div class="badge"><b>Checked against you</b>Every line traces back to what you told us.</div>
+<div class="note"><b>Example</b>A vague line, sharpened using only what you tell us.</div>
+<div class="profile"><div class="cover"></div><div class="body"><div class="av"></div><div class="nm">Your name</div><div class="hd">Your headline</div><div class="ln m"></div><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Checked against your history</div></div></div>
 </div>
+</div></section>
+
+<div class="margin-rule" aria-hidden="true"><span>&para;</span></div>
+
+<section class="band"><div class="wrap">
+<div class="head"><p class="eyebrow l">Services</p><h2>Four ways we can <em>help</em></h2><p>Each one starts from your real history. Every service is quoted individually.</p></div>
+<div class="grid g4">{services.map((s,i)=><a class="card" href={withBase(s.id+'/')}><span class="no">0{i+1}</span><Icon name={s.data.icon} /><h3>{s.data.title.split(' | ')[0]}</h3><p class="muted">{s.data.summary}</p><span class="more">Learn more</span></a>)}</div>
+</div></section>
+
+<section class="band band--paper2"><div class="wrap">
+<div class="head"><p class="eyebrow l">The edit</p><h2>Vague in, <em>specific</em> out</h2><p>This is what editing looks like. We replace filler with the detail you already have, and nothing else.</p></div>
+<div class="rewrite">{rewrites.map(([b,a])=><div class="rw"><div><small>Before</small><span class="del">{b}</span></div><div class="arr" aria-hidden="true">&rarr;</div><div><small>After <span class="tag">Example</span></small><span class="ins">{a}</span></div></div>)}</div>
+<p class="fine">These are generic illustrations, not real client work. We only write a line like these when your own history supports it. If you did not do it, we do not write it.</p>
 </div></section>
 
 <section class="band"><div class="wrap">
-<div class="head"><p class="eyebrow">Services</p><h2>Four ways we can help</h2><p>Each one starts from your real history. Every service is quoted individually.</p></div>
-<div class="grid g4">{services.map((s)=><a class="card" href={withBase(s.id+'/')}><Icon name={s.data.icon} /><h3>{s.data.title.split(' | ')[0]}</h3><p>{s.data.summary}</p><span class="more">Learn more</span></a>)}</div>
-</div></section>
-
-<section class="band band--tint"><div class="wrap">
-<div class="head"><p class="eyebrow">How it works</p><h2>A simple, honest process</h2></div>
+<div class="head"><p class="eyebrow l">How it works</p><h2>A simple, <em>honest</em> process</h2></div>
 <ol class="steps">{steps.map(([t,d])=><li><h3>{t}</h3><p>{d}</p></li>)}</ol>
 </div></section>
 
 <section class="band band--ink"><div class="wrap">
-<div class="head"><p class="eyebrow">Our promise</p><h2>No embellishment. Ever.</h2></div>
+<div class="head"><p class="eyebrow l">Our promise</p><h2>No embellishment. <em>Ever.</em></h2></div>
 <div class="principles">
-<div><h3>Only what is true</h3><p>If it is not in your history, it is not in your document.</p></div>
-<div><h3>You stay in control</h3><p>You review every draft and correct anything that is off.</p></div>
-<div><h3>Private by default</h3><p>Your details are not fed to external AI models.</p></div>
-<div><h3>Honest about outcomes</h3><p>We make no promise of interviews or job offers.</p></div>
+<div class="pr"><Mark n="check" /><h3>Only what is true</h3><p>If it is not in your history, it is not in your document.</p></div>
+<div class="pr"><Mark n="strike" /><h3>Changes you can see</h3><p>Edits stay traceable to what you told us. You review every line.</p></div>
+<div class="pr"><Mark n="caret" /><h3>Private by default</h3><p>Your details are not fed to external AI models.</p></div>
+<div class="pr"><Mark n="para" /><h3>Honest about outcomes</h3><p>We make no promise of interviews or job offers.</p></div>
 </div></div></section>
 
 <section class="band"><div class="wrap"><div class="prose">
-<div class="head"><p class="eyebrow">FAQ</p><h2>Common questions</h2></div>
+<div class="head" style="margin-bottom:32px"><p class="eyebrow l">FAQ</p><h2>Common <em>questions</em></h2></div>
 <Faq items={faq.slice(0,4)} />
-<p><a class="more" href={withBase('faq/')}>See all questions</a></p>
+<p><a href={withBase('faq/')}><strong>See all questions</strong></a></p>
 </div></div></section>
 </Base>

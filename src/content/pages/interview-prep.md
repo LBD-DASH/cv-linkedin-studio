@@ -5,6 +5,11 @@ kind: service
 order: 4
 lastUpdated: 2026-11-20
 summary: "Likely questions and talking points drawn from your real experience."
+headline: "Interview *prep* from your own history."
+example:
+  label: "Example answer"
+  before: "I do a bit of everything"
+  after: "The situation, what I did, and what changed, in my own words"
 icon: interview
 lead: "Preparation to talk about your real experience clearly and with confidence."
 audience:
@@ -16,7 +21,7 @@ gets:
 process:
   - t: "Share the role"
     d: "Send the job description and your history."
-  - t: "We prepare"
+  - t: "We draft"
     d: "We draft likely questions and talking points from what you have done."
   - t: "You practise"
     d: "You rehearse in your own words."

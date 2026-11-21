@@ -5,6 +5,11 @@ kind: service
 order: 3
 lastUpdated: 2026-11-20
 summary: "Headline, About and experience wording that matches your real history."
+headline: "A LinkedIn *profile* that matches your CV."
+example:
+  label: "Example headline"
+  before: "Hard-working professional seeking opportunities"
+  after: "Operations coordinator: scheduling, suppliers and reporting"
 icon: linkedin
 lead: "A LinkedIn headline, About section and experience that tell the same true story as your CV."
 audience:

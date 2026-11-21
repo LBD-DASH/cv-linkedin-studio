@@ -1,31 +1,29 @@
-# Design system: CV and LinkedIn Studio
+# Design system: CV and LinkedIn Studio (v2, "The editor's desk")
 
-Mood: calm, editorial, trustworthy. A quiet professional-services look, not a template.
+## Design reasoning
+**Visitor.** A job seeker or career changer. Anxious, short of time, wants to look credible without lying. They have been told to "sell themselves" and distrust anything that sounds like hype.
 
-## Colour
-- Ink / navy `--ink` #0f1f33 (headings, dark bands, primary buttons)
-- Ink soft `--ink-2` #31435a (body text), muted `--mut` #5a6878
-- Accent (warm amber) `--accent` #e9a15a, accent text `--accent-ink` #8f4a12 (AA on paper)
-- Paper `--paper` #fbf8f3, surface `--surface` #ffffff, tint `--tint` #f3ede3, line `--line` #e4ddd0
-- All text pairs meet WCAG AA.
+**Feeling.** Calm confidence. Editorial and trustworthy, like a well-set career document on good paper, handled by someone careful with words.
 
-## Type
-- Headings: Fraunces (variable serif, self-hosted via @fontsource-variable, font-display swap)
-- Body: Inter (variable sans, self-hosted)
-- Scale (fluid): display clamp(2.4rem,5vw,3.9rem); h1 clamp(2rem,4vw,3rem); h2 clamp(1.5rem,2.6vw,2.1rem); h3 1.2rem; body 1.0625rem/1.65; small .875rem; eyebrow .8rem uppercase tracked
+**Concept: the editor's markup.** Our work is editing the truth, not inventing it, so the visual language is the editor's desk: tracked changes (a struck-out vague line, an inserted sharper one), margin notes, proof marks (caret, check, pilcrow), ruled document grid lines, and a profile card. The motif is native to the business and carries the promise: every change is visible, nothing is added from nowhere. Section dividers are ruled margin lines with a proof mark. Icons are proof marks in a ring. Dark bands carry a faint document grid.
 
-## Space, shape
-- 8px scale: `--s1` 8, `--s2` 16, `--s3` 24, `--s4` 32, `--s5` 48, `--s6` 64, `--s7` 96
-- Radius: 6 (buttons), 14 (cards), 22 (hero visual)
-- Shadow: soft `0 1px 2px rgba(15,31,51,.06), 0 8px 24px rgba(15,31,51,.07)`
-- Widths: wrap 72rem, prose 42rem
+**Palette (own identity).** Blue-black ink `#12151f` for authority; deep editorial green `#1b6b50` as the one accent because green means "approved, checked", the opposite of a red pen telling someone off; a soft highlighter yellow `#f4e28a` used only for insertions and margin notes; warm paper `#f5f1e8`, never pure white. Green text on paper passes AA.
+
+**Type.** Fraunces Variable (headings, with an italic accent word in green, like an editor's emphasis) plus Inter Variable (text), both self-hosted, fluid `clamp()` sizes, slight negative tracking on headings, `text-wrap: balance`. Tabular numbers where numbers appear.
+
+**Restraint.** Wrap 74rem, reading width 46rem, generous spacing, layered ink-tinted shadows, CSS-only motion (strike-through and insertion draw in) disabled under `prefers-reduced-motion`.
+
+## Tokens
+Ink scale `--ink-950` #0b0d14, `--ink-900` #12151f, `--ink-800` #1c2130, `--ink-700` #2b3347, `--ink-500` #5b6479. Accent `--green-600` #1b6b50, `--green-500` #2a8a68, `--green-100` #dcefe6. Mark `--mark` #f4e28a. Paper `--paper` #f5f1e8, `--paper-2` #ece6d8, line `--line` #ddd5c3. 8px space scale `--s-1..--s-9`. Radius 8/14/20/28. Shadows `--sh-1..3` ink-tinted.
 
 ## Patterns
-- Header: sticky, slim (64px), paper blur, wordmark left, text nav, amber "Request a quote" button right; nav collapses to a details menu on mobile.
-- Buttons: `.btn` primary navy, `.btn--accent` amber, `.btn--ghost` outlined. 44px min height, visible 3px focus ring.
-- Cards: white surface, 1px line, radius 14, soft shadow, hover lift 2px.
-- Sections: 96px vertical rhythm (64 on mobile); alternating paper / tint / ink bands.
-- Footer: ink background, columns for brand, services, studio and trust, disclosure line.
+- Eyebrow: tracked uppercase with a rule beside it.
+- Divider (`.margin-rule`): dashed ruled line with a pilcrow mark.
+- Tracked change: `.del` (struck, muted) then `.ins` (highlighted, green underline).
+- Margin note: yellow note with small label ("Example", "Note").
+- Buttons: green primary with arrow and soft green shadow; ghost outline; yellow variant on dark.
+- Cards: warm white `#fffdf8`, 1px line, layered shadow.
+- Service template: dark hero with tracked-change example, who it is for, what you get, process, honest notes as margin notes, CTA band.
 
 ## Content rules
-No testimonials, stats, logos, names, ratings or prices. Offers say "Request a quote". No em dashes. No guarantee language.
+No testimonials, stats, logos, names, ratings, outcomes or prices. Examples are labelled "Example". Offers say "Request a quote". No em dashes. No guarantee language.
